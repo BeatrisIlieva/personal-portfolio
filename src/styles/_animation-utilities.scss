@@ -1,0 +1,28 @@
+@use './animations' as anim;
+
+.animate-fade-in {
+    @include anim.animate-fade-in();
+}
+
+.animate-fade-out {
+    @include anim.animate-fade-out();
+}
+
+.animate-pulse {
+    @include anim.animate-pulse();
+}
+
+.content-transition-out {
+    @include anim.animate-fade-out(0.4s);
+}
+
+.content-transition-in {
+    @include anim.animate-fade-in(0.6s);
+}
+
+.duration-300ms {
+    animation-duration: 300ms !important;
+}
+.duration-500ms {
+    animation-duration: 500ms !important;
+}
