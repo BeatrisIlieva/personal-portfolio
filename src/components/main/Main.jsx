@@ -3,13 +3,15 @@ import { Certificates } from './ceritficates/Certificates';
 import { Diploma } from './diploma/Diploma';
 
 import styles from './Main.module.scss';
+import { Project } from './project/Project';
 
 export const Main = () => {
     return (
         <main className={styles['main']}>
             <About />
+            <Project />
             <Diploma />
-            <Certificates/>
+            <Certificates />
         </main>
     );
 };

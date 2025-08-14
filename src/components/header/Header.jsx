@@ -37,43 +37,48 @@ export const Header = () => {
 
     return (
         <header className={styles['main-header']}>
-            <h1>Beatris Ilieva</h1>
+            <div className={styles['wrapper']}>
+                <h1>Beatris Ilieva</h1>
 
-            <ul>
-                {navLinks.map(({ id, label }) => (
-                    <li key={id}>
+                <ul>
+                    {navLinks.map(({ id, label }) => (
+                        <li key={id}>
+                            <a
+                                href={`#${id}`}
+                                className={
+                                    activeSection === id ? styles.active : ''
+                                }
+                            >
+                                {label}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+
+                <ul>
+                    <li>
                         <a
-                            href={`#${id}`}
-                            className={
-                                activeSection === id ? styles.active : ''
-                            }
+                            href='https://github.com/BeatrisIlieva'
+                            target='_blank'
                         >
-                            {label}
+                            <FontAwesomeIcon icon={faGithub} />
                         </a>
                     </li>
-                ))}
-            </ul>
-
-            <ul>
-                <li>
-                    <a href='https://github.com/BeatrisIlieva' target='_blank'>
-                        <FontAwesomeIcon icon={faGithub} />
-                    </a>
-                </li>
-                <li>
-                    <a
-                        href='https://www.linkedin.com/in/beatrisilieva'
-                        target='_blank'
-                    >
-                        <FontAwesomeIcon icon={faLinkedin} />
-                    </a>
-                </li>
-                <li>
-                    <a href='mailto:beatris.ilieva@icloud.com'>
-                        <FontAwesomeIcon icon={faEnvelope} />
-                    </a>
-                </li>
-            </ul>
+                    <li>
+                        <a
+                            href='https://www.linkedin.com/in/beatrisilieva'
+                            target='_blank'
+                        >
+                            <FontAwesomeIcon icon={faLinkedin} />
+                        </a>
+                    </li>
+                    <li>
+                        <a href='mailto:beatris.ilieva@icloud.com'>
+                            <FontAwesomeIcon icon={faEnvelope} />
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </header>
     );
 };

@@ -1,39 +1,94 @@
 @use '../../styles/variables' as vars;
 
 .main-header {
-    display: flex;
-    align-items: center;
-    color: vars.$white;
-    padding-inline: 4em;
-    padding-bottom: 0.25em;
-    padding-top: 1.5em;
-    border-bottom: 0.1em solid vars.$white;
-    border-color: rgba(255, 255, 255, 0.676);
     position: sticky;
     top: 0;
     left: 0;
     z-index: 40;
-    background: vars.$background;
+    background: rgba(33, 33, 33, 8.4);
+    background: linear-gradient(
+        90deg,
+        rgba(33, 33, 33, 0.86) 0%,
+        rgba(33, 33, 33, 1) 52%,
+        rgba(33, 33, 33, 0.86) 100%
+    );
 
-    h1 {
-        font-weight: 500;
-    }
-
-    ul:nth-of-type(1) {
-        margin-left: 8em;
-        margin-right: auto;
+    .wrapper {
         display: flex;
-        gap: 2em;
+        align-items: center;
+        color: vars.$white;
+        margin-inline: 3em;
+        padding-bottom: 0.25em;
+        padding-top: 1.5em;
+        border-bottom: 0.1em solid vars.$white;
+        border-bottom-color: #ffffff7d;
 
-        li {
+        h1 {
+            font-weight: 500;
+        }
+
+        ul:nth-of-type(1) {
+            margin-left: 8em;
+            margin-right: auto;
             display: flex;
+            gap: 2em;
 
-            a {
-                text-decoration: none;
-                font-size: 1.2em;
-                margin-bottom: -0.5em;
-                opacity: 0.6;
-                transition: opacity 0.3s ease-in-out, transform 0.2s ease-in-out;
+            li {
+                display: flex;
+
+                a {
+                    text-decoration: none;
+                    font-size: 1.2em;
+                    margin-bottom: -0.5em;
+                    opacity: 0.6;
+                    transition: opacity 0.3s ease-in-out,
+                        transform 0.2s ease-in-out;
+
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+
+        ul:nth-of-type(2) {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+
+            li {
+                font-size: 1.1em;
+                border-radius: 50%;
+                aspect-ratio: 1/1;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0.8;
+                padding: 0.25rem;
+                transition: opacity 0.3s ease-in-out,
+                    background 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+                &:nth-child(1) {
+                    color: vars.$white;
+                    font-size: 1.8rem;
+                    padding: 0;
+                    margin: 0;
+                    margin-right: -0.15em;
+                }
+
+                &:nth-child(2) {
+                    background-color: vars.$blue;
+                    color: vars.$white;
+                }
+
+                &:nth-child(3) {
+                    background-color: vars.$green;
+                }
+
+                a {
+                    margin-top: 0.1em;
+                }
 
                 &:hover {
                     opacity: 1;
@@ -41,53 +96,8 @@
             }
         }
     }
-
-    ul:nth-of-type(2) {
-        display: flex;
-        align-items: center;
-        gap: 1em;
-
-        li {
-            font-size: 1.1em;
-            border-radius: 50%;
-            aspect-ratio: 1/1;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0.8;
-            padding: 0.25rem;
-            transition: opacity 0.3s ease-in-out, background 0.3s ease-in-out,
-                transform 0.2s ease-in-out;
-
-            &:nth-child(1) {
-                color: vars.$white;
-                font-size: 1.8rem;
-                padding: 0;
-                margin: 0;
-                margin-right: -0.15em;
-            }
-
-            &:nth-child(2) {
-                background-color: vars.$blue;
-                color: vars.$white;
-            }
-
-            &:nth-child(3) {
-                background-color: vars.$green;
-            }
-
-            a {
-                margin-top: 0.1em;
-            }
-
-            &:hover {
-                opacity: 1;
-            }
-        }
-    }
 }
 
-.main-header a.active {
+.main-header .wrapper a.active {
     opacity: 1 !important;
 }
