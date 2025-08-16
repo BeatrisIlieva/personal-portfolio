@@ -1,9 +1,38 @@
 .project {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6em;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10em;
+    row-gap: 10em;
+    padding-inline: 3em;
 
-    div:nth-child(1) {
-        margin-top: -5em
+    article:nth-child(1) {
+        flex: 1 1 23%;
+        margin-top: -6.5em;
+    }
+
+    article:nth-child(2) {
+        flex: 1 1 58%;
+    }
+
+    article:nth-child(3) {
+        flex: 1 1 58%;
+    }
+
+    article:nth-child(4) {
+        flex: 1 1 23%;
+        margin-top: -6.5em;
+    }
+
+    article:nth-child(5) {
+        flex: 1 1 58%;
+    }
+
+    article:nth-child(6) {
+        flex: 1 1 58%;
+    }
+
+    article:nth-child(7) {
+        flex: 1 1 23%;
+        margin-top: -6.5em;
     }
 }

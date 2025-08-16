@@ -16,12 +16,11 @@ export const About = () => {
                 </p>
                 <p>
                     My diploma project is a full-stack e-commerce platform built
-                    with Django REST Framework and React, including 35+ REST API
-                    endpoints, PostgreSQL database design, and JWT
-                    authentication. The system implements asynchronous
-                    processing with Celery and Redis. It achieved 74% test
-                    coverage across 66 unit and integration tests. The platform
-                    is deployed on Azure with Redis Cloud integration.
+                    with Django REST Framework and React, PostgreSQL database
+                    design, and JWT authentication. The system implements
+                    asynchronous processing with Celery and Redis. It achieved
+                    74% test coverage. The platform is deployed on Azure with
+                    Redis Cloud integration.
                 </p>
                 <p>
                     Future plans include continuing education with an AI and

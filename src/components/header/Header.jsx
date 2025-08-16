@@ -21,13 +21,22 @@ export const Header = () => {
 
         const observer = new IntersectionObserver(
             (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        setActiveSection(entry.target.id);
-                    }
-                });
+                const visibleSections = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => {
+                        const aTop = a.boundingClientRect.top;
+                        const bTop = b.boundingClientRect.top;
+                        return Math.abs(aTop) - Math.abs(bTop);
+                    });
+
+                if (visibleSections.length > 0) {
+                    setActiveSection(visibleSections[0].target.id);
+                }
             },
-            { threshold: 0.6 } // section considered active when 60% visible
+            {
+                threshold: 0.1,
+                rootMargin: '-80px 0px -80px 0px' // Adjust based on your header height
+            }
         );
 
         sections.forEach((section) => observer.observe(section));
