@@ -1,26 +1,30 @@
 import { Video } from './video/Video';
 import styles from './Project.module.scss';
-import { mediaConfig } from './config';
+
 import { Image } from './image/Image';
 
 export const Project = () => {
     return (
         <section id='project' className={styles['project']}>
-            <Image imageName='home.png' />
-            <Video
-                videoName='product-list'
-                text={mediaConfig['product-list']}
-            />
+            <h2>Diploma Project: DRF React Gems</h2>
+            <button>
+                <a href="https://github.com/BeatrisIlieva/drf-react-gems">View the app</a>
+            </button>
+            <button>
+                <a href="https://github.com/BeatrisIlieva/drf-react-gems">View the GitHub repo</a>
+            </button>
+            
+            
 
-            <Video videoName='add-to-bag' text={mediaConfig['add-to-bag']} />
-            <Image imageName='product-item.png' />
+            <div className={styles['wrapper']}>
+            <div className={styles['relative-container']}>
+                <Image imageName='tablet-rotated.png' />
+                <Image imageName='mobile-rotated.png' />
+            </div>
 
-            <Video videoName='register' text={mediaConfig['register']} rowAlignment='one-row'/>
+            <Video videoName='mockup' />
+            </div>
 
-            <Video videoName='product-review' text={mediaConfig['product-review']} />
-            <Image imageName='wishlist.png' />
-
-            <Video videoName='reset-password' text={mediaConfig['reset-password']} rowAlignment='one-row'/>
         </section>
     );
 };

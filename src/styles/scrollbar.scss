@@ -1,0 +1,18 @@
+@use '../styles/variables' as vars;
+
+
+::-webkit-scrollbar {
+    width: 0.75em;
+    border-bottom-right-radius: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 100vw;
+    margin-block: 0.5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background: vars.$background;
+    border-radius: 100vw;
+    border: 0.03em solid rgba(255, 255, 255, 0.824);
+}

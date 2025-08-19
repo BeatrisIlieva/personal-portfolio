@@ -1,11 +1,10 @@
+@use '../styles/variables' as vars;
 @import url('https://fonts.cdnfonts.com/css/tisa-sans-pro');
 
 html {
-    font:
-        15px / 1.6 'Tisa Sans Pro',
-        sans-serif;
+    font: 15px / 1.6 'Overpass', sans-serif;
     letter-spacing: 0.08em;
-    color: var(--black);
+    color: vars.$white;
 }
 
 @media (min-width: 1900px) {

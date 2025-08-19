@@ -1,38 +1,61 @@
+@use '../../../styles/variables' as vars;
+
 .project {
     display: flex;
-    flex-wrap: wrap;
-    column-gap: 10em;
-    row-gap: 10em;
-    padding-inline: 3em;
+    flex-direction: column;
 
-    article:nth-child(1) {
-        flex: 1 1 23%;
-        margin-top: -6.5em;
+    h2 {
+        align-self: flex-end;
     }
 
-    article:nth-child(2) {
-        flex: 1 1 58%;
+    button {
+        width: 14em;
     }
 
-    article:nth-child(3) {
-        flex: 1 1 58%;
+    button:nth-of-type(1) {
+        background: vars.$black;
+        color: vars.$white;
+        margin-bottom: 0.75em;
     }
 
-    article:nth-child(4) {
-        flex: 1 1 23%;
-        margin-top: -6.5em;
+    button:nth-of-type(2) {
+        background: vars.$white;
+        color: vars.$black;
     }
 
-    article:nth-child(5) {
-        flex: 1 1 58%;
+    a {
+        text-decoration: none;
     }
 
-    article:nth-child(6) {
-        flex: 1 1 58%;
-    }
+    .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        padding-inline: 3em;
+        align-items: center;
+        justify-content: space-between;
+        .relative-container {
+            flex: 1 1 37%;
+            position: relative;
 
-    article:nth-child(7) {
-        flex: 1 1 23%;
-        margin-top: -6.5em;
+            article {
+                position: absolute;
+            }
+
+            article:nth-child(1) {
+                top: -5em;
+                left: 0;
+            }
+
+            article:nth-child(2) {
+                left: 0;
+                top: -3em;
+                width: 12dvw;
+                z-index: 3;
+            }
+        }
+
+        & > div:nth-child(2) {
+            flex: 1 1 62%;
+        }
     }
 }
