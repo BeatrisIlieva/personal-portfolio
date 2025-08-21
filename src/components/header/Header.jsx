@@ -47,7 +47,7 @@ export const Header = () => {
     return (
         <header className={styles['main-header']}>
             <div className={styles['wrapper']}>
-                <h1>Beatris Ilieva</h1>
+                <span>Beatris Ilieva</span>
 
                 <ul>
                     {navLinks.map(({ id, label }) => (

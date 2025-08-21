@@ -1,0 +1,94 @@
+@use '../../../styles/variables' as vars;
+
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    padding: 6em;
+
+    h3 {
+        margin-bottom: 0.4em;
+        font-weight: 600;
+    }
+
+    .left-border {
+        border-left: 0.04em solid rgba(255, 255, 255, 0.626);
+        padding-left: 1.5em;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .top-border {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .top-wrapper {
+        display: flex;
+        justify-content: center;
+
+        .personal-photo {
+            flex: 0 1 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2em;
+
+            .thumbnail {
+                background: vars.$background;
+                width: 16em;
+                display: flex;
+                box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.9);
+                border-radius: 2em;
+                outline: 0.08em solid rgba(255, 255, 255, 0.626);
+                overflow: hidden;
+                border-radius: 50%;
+                aspect-ratio: 1/1;
+                overflow: hidden;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+
+                img {
+                    scale: 1.2;
+                    position: absolute;
+                    top: 1.5em;
+                }
+            }
+        }
+
+        .inner-wrapper {
+            flex: 0 1 60%;
+            display: flex;
+            flex-direction: column;
+            gap: 3em;
+        }
+    }
+
+    .bottom-wrapper {
+        display: flex;
+        justify-content: center;
+
+        & > div:nth-child(1) {
+            flex: 0 1 40%;
+
+            &::before {
+                content: '';
+                background: rgba(255, 255, 255, 0.626);
+                position: absolute;
+                top: -1em;
+                left: 0;
+                width: 20em;
+                height: 0.04em;
+            }
+        }
+
+        & > div:nth-child(2) {
+            flex: 0 1 60%;
+            position: relative;
+        }
+    }
+}

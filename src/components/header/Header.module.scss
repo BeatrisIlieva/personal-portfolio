@@ -20,11 +20,12 @@
         margin-inline: 3em;
         padding-bottom: 0.25em;
         padding-top: 1.5em;
-        border-bottom: 0.1em solid vars.$white;
-        border-bottom-color: #ffffff7d;
+        // border-bottom: 0.1em solid vars.$white;
+        // border-bottom-color: #ffffff7d;
 
-        h1 {
+        span {
             font-weight: 500;
+            font-size: 1.8em;
         }
 
         ul:nth-of-type(1) {
