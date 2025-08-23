@@ -74,12 +74,77 @@
         flex: 1 1 50%;
         display: flex;
         position: relative;
-        margin-top: calc(15em - 10dvw);
+        margin-top: 3em;
 
-        @media (max-width: 1140px) {
-            .personal-photo {
-                // flex: 1 1 100%;
-            }
+        @media (max-width: 1400px) {
+            margin-top: 4em;
+        }
+
+        @media (max-width: 1350px) {
+            margin-top: 5em;
+        }
+
+        @media (max-width: 1300px) {
+            margin-top: 6em;
+        }
+
+        @media (max-width: 1250px) {
+            margin-top: 7em;
+        }
+
+        @media (max-width: 1200px) {
+            margin-top: 8em;
+        }
+
+        @media (max-width: 1150px) {
+            margin-top: 9em;
+        }
+
+        @media (max-width: 1100px) {
+            margin-top: 10em;
+        }
+
+        @media (max-width: 1050px) {
+            margin-top: 11em;
+        }
+
+        @media (max-width: 1000px) {
+            margin-top: 12em;
+        }
+        @media (max-width: 950px) {
+            margin-top: 13em;
+        }
+
+        @media (max-width: 900px) {
+            margin-top: 14em;
+        }
+
+        @media (max-width: 850px) {
+            margin-top: 15em;
+        }
+
+        @media (max-width: 800px) {
+            margin-top: 16em;
+        }
+
+        @media (max-width: 620px) {
+            margin-top: 17em;
+            right: 2em;
+            flex: 0 0 0;
+        }
+        @media (max-width: 445px) {
+            margin-top: 18em;
+            right: 6em;
+        }
+
+        @media (max-width: 430px) {
+            margin-top: 18em;
+            right: 9em;
+        }
+
+        @media (max-width: 370px) {
+            margin-top: 18em;
+            right: 10em;
         }
 
         &::after {
@@ -90,6 +155,10 @@
             position: absolute;
             top: 0;
             left: 6em;
+
+            @media (max-width: 1130px) {
+                display: none;
+            }
         }
 
         &::before {
@@ -100,6 +169,10 @@
             position: absolute;
             bottom: 0;
             right: 0;
+
+            @media (max-width: 1130px) {
+                display: none;
+            }
         }
 
         .circle {
