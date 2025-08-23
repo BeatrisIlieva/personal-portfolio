@@ -17,7 +17,7 @@
         display: flex;
         align-items: center;
         color: vars.$white;
-        margin-inline: 3em;
+        margin-inline: clamp(1em, 5dvw, 3em);
         padding-bottom: 0.25em;
         padding-top: 1.5em;
         // border-bottom: 0.1em solid vars.$white;

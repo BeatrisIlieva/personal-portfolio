@@ -7,9 +7,9 @@ html {
     color: vars.$white;
 }
 
-@media (min-width: 1900px) {
+@media (max-width: 1800px) {
     html {
-        font-size: 18px;
+        font-size: 16px;
     }
 }
 

@@ -2,19 +2,20 @@
 
 .about {
     display: flex;
-    padding-inline: 6em;
+    padding-inline: clamp(0em, 5dvw, 6em);
     justify-content: space-between;
 
     @media (max-width: 1140px) {
-        flex-direction: column;
+        // flex-direction: column;
+        // align-items: center;
 
-        .info {
-            flex: 1 1 100%;
-        }
+        // .info {
+        //     flex: 1 1 100%;
+        // }
 
-        .personal-photo {
-            flex: 1 1 100%;
-        }
+        // .personal-photo {
+        //     flex: 1 1 100%;
+        // }
     }
 
     .info {
@@ -72,14 +73,12 @@
     .personal-photo {
         flex: 1 1 50%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 6em;
         position: relative;
+        margin-top: calc(15em - 10dvw);
 
         @media (max-width: 1140px) {
             .personal-photo {
-                flex: 1 1 100%;
+                // flex: 1 1 100%;
             }
         }
 
@@ -104,7 +103,7 @@
         }
 
         .circle {
-            width: 19em;
+            width: 19dvw;
             border: 0.08em solid rgba(255, 255, 255, 0.251);
             overflow: hidden;
             border-radius: 50%;
@@ -112,47 +111,47 @@
             overflow: hidden;
             z-index: -1;
             position: absolute;
-            top: 1em;
-            right: 1em;
+            top: 1dvw;
+            right: 1dvw;
         }
 
         & .circle:nth-of-type(1) {
-            border-color: rgba(255, 255, 255, 0.251);
+            border-color: rgba(255, 255, 255, 0.172);
         }
 
         & .circle:nth-of-type(2) {
-            top: 2em;
-            right: 2em;
-            border-color: rgba(255, 255, 255, 0.399);
+            top: 2dvw;
+            right: 2dvw;
+            border-color: rgba(255, 255, 255, 0.236);
         }
 
         & .circle:nth-of-type(3) {
-            top: 3em;
-            right: 3em;
-            border-color: rgba(255, 255, 255, 0.514);
+            top: 3dvw;
+            right: 3dvw;
+            border-color: rgba(255, 255, 255, 0.391);
         }
 
         & .circle:nth-of-type(4) {
-            top: 4em;
-            right: 4em;
-            border-color: rgba(255, 255, 255, 0.581);
+            top: 4dvw;
+            right: 4dvw;
+            border-color: rgba(255, 255, 255, 0.479);
         }
 
         & .circle:nth-of-type(5) {
-            top: 5em;
-            right: 5em;
-            border-color: rgba(255, 255, 255, 0.756);
+            top: 5dvw;
+            right: 5dvw;
+            border-color: rgba(255, 255, 255, 0.621);
         }
 
         & .circle:nth-of-type(6) {
-            top: 6em;
-            right: 6em;
-            border-color: rgba(255, 255, 255, 0.868);
+            top: 6dvw;
+            right: 6dvw;
+            border-color: rgba(255, 255, 255, 0.681);
         }
 
         .thumbnail {
             background: vars.$background;
-            width: 19em;
+            width: 19dvw;
             display: flex;
             box-shadow: 0 0 1em 0 rgb(0, 0, 0, 0.9);
             outline: 0.08em solid white;
@@ -162,12 +161,12 @@
             overflow: hidden;
 
             position: absolute;
-            top: 6.75em;
-            right: 7.75em;
+            top: 6.75dvw;
+            right: 7.25dvw;
 
             img {
                 scale: 1.2;
-                position:  relative;
+                position: relative;
                 top: 1.9em;
             }
         }
