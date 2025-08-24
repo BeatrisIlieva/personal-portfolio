@@ -1,5 +1,6 @@
 import { About } from './about/About';
 import { Certificates } from './ceritficates/Certificates';
+import { Chatbot } from './chatbot/Chatbot';
 import { Diploma } from './diploma/Diploma';
 
 import styles from './Main.module.scss';
@@ -12,6 +13,7 @@ export const Main = () => {
             <Project />
             <Diploma />
             <Certificates />
+            <Chatbot/>
         </main>
     );
 };

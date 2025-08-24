@@ -24,8 +24,8 @@ query_embedding = document_service.generate_query_embedding(
 if query_embedding:
     print(f"\nQuery Embedding (first 10 elements): {query_embedding[:10]}...")
 
-    search_results, distances = document_service.vector_search(
-        query_embedding, database.collection, n_results=5, distance_threshold=0.4)
+    search_results = document_service.vector_search(
+        query_embedding, database.collection, n_results=5)
 
     if search_results:
         ai_response = chat_service.generate_ai_response(

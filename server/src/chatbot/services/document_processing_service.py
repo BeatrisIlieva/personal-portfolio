@@ -99,29 +99,25 @@ class DocumentProcessingService(DatabaseService):
             return None
 
     @staticmethod
-    def vector_search(query_embedding, collection, n_results=5, distance_threshold=None):
+    def vector_search(query_embedding, collection, n_results=5):
         if query_embedding is None:
             print("Error: Query embedding is None.")
             return None, None
 
         try:
-            where_clause = {}
-            if distance_threshold is not None:
-                where_clause = {"distance": {"$lt": distance_threshold}}
 
             results = collection.query(
                 query_embeddings=[query_embedding],
                 n_results=n_results,
                 include=['documents', 'distances'],
-                # where=where_clause
             )
 
             if results and results.get('documents') and results['documents'][0]:
-                return results['documents'][0], results['distances'][0]
+                return results['documents'][0]
             else:
                 print("No results found for the query.")
-                return [], []
+                return []
 
         except Exception as e:
             print(f"An error occurred during vector search: {e}")
-            return None, None
+            return None

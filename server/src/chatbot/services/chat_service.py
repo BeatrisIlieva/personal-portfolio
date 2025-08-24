@@ -1,6 +1,5 @@
 import os
 import json
-import sys
 
 
 from src.chatbot.services.database_service import DatabaseService
@@ -13,6 +12,7 @@ CHAT_HISTORY = os.path.join(os.path.dirname(__file__), "chat_history.json")
 
 class ChatService(DatabaseService):
     def __init__(self):
+        super().__init__()
         super().__init__()
         self.tools = TOOLS
 
@@ -30,7 +30,7 @@ class ChatService(DatabaseService):
             Generated response string or None if error
         """
         history = self._load_chat_history()
-        
+
         # Handle both cases: with and without search results
         context = ""
         if search_results:
@@ -38,7 +38,7 @@ class ChatService(DatabaseService):
 
         # Create appropriate message based on whether we have context
         system_message = SYSTEM_MESSAGE
-        
+
         if context:
             user_message = f"Based on the following context, answer the query:\n\nContext:\n{context}\n\nQuery: {query_text}"
         else:
@@ -68,7 +68,7 @@ class ChatService(DatabaseService):
 
             # Handle tool calls if any
             if response.choices[0].message.tool_calls:
-                
+
                 messages.append(response.choices[0].message)
 
                 for tool_call in response.choices[0].message.tool_calls:
@@ -122,13 +122,12 @@ class ChatService(DatabaseService):
                     stream=True
                 )
 
-                print("AI Response: ", end="")
                 for chunk in final_response:
                     delta = chunk.choices[0].delta
                     if delta and delta.content:
-                        sys.stdout.write(delta.content)
-                        sys.stdout.flush()
-                        collected_response += delta.content
+                        content = delta.content
+                        collected_response += content
+                        yield json.dumps({"chunk": content}) + "\n\n"
 
             else:
                 # No tool calls - stream direct response
@@ -141,25 +140,21 @@ class ChatService(DatabaseService):
                     stream=True
                 )
 
-                print("AI Response: ", end="")
                 for chunk in final_response:
                     delta = chunk.choices[0].delta
                     if delta and delta.content:
-                        sys.stdout.write(delta.content)
-                        sys.stdout.flush()
-                        collected_response += delta.content
+                        content = delta.content
+                        collected_response += content
+                        yield json.dumps({"chunk": content}) + "\n\n"
 
-                print()  # New line after response
+            yield json.dumps({"chunk": "[DONE]"}) + "\n\n"
 
             history.append({"role": "user", "content": query_text})
-            history.append({"role": "assistant", "content": collected_response})
+            history.append(
+                {"role": "assistant", "content": collected_response})
             self._save_chat_history(history)
 
-            return collected_response if collected_response else "Response completed"
-
         except Exception as e:
-            import traceback
-            traceback.print_exc()
             return None
 
     @staticmethod
@@ -188,7 +183,6 @@ class ChatService(DatabaseService):
     def load_memory(query: str):
         """Search for stored memories matching the query with robust error handling"""
 
-
         if not os.path.exists(MEMORY_FILE):
             return "No memories stored"
 
@@ -208,8 +202,7 @@ class ChatService(DatabaseService):
             return "Memory file corrupted - please reset"
         except Exception as e:
             return f"Error reading memory: {e}"
-        
-        
+
     def _load_chat_history(self):
         """Load chat history from JSON file."""
         if os.path.exists(CHAT_HISTORY):
@@ -227,5 +220,3 @@ class ChatService(DatabaseService):
                 json.dump(history, f, indent=2)
         except Exception as e:
             print(f"Error saving chat history: {e}")
-
-
