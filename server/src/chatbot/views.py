@@ -10,7 +10,7 @@ from src.chatbot.serializers import ChatRequestSerializer
 from src.chatbot.constants import ERROR_RESPONSE_OBJECT
 
 
-class ChatBotAPIView(APIView, ChatService):
+class ChatBotAPIView(APIView):
     """
     Main chatbot API endpoint that handles user queries and returns AI responses.
     """
@@ -41,9 +41,11 @@ class ChatBotAPIView(APIView, ChatService):
                 )
 
             user_message = serializer.validated_data['message']
+            
+            chat_service = ChatService()
 
             response = StreamingHttpResponse(
-                self.process_query(user_message),
+                chat_service.process_query(user_message),
                 content_type='text/event-stream'
             )
 
