@@ -17,7 +17,7 @@ class ClientAdapter:
             )
             cls._instance.chroma_client = chromadb.Client()
             cls._instance.collection = cls._instance.chroma_client.get_or_create_collection(
-                "beaaaaarrrrrr_db",
+                "drf_db",
             )
 
         return cls._instance

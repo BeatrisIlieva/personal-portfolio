@@ -7,10 +7,9 @@ import styles from './Header.module.scss';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
-    { id: 'about', label: 'About' },
-    { id: 'project', label: 'Project' },
-    { id: 'diploma', label: 'Diploma' },
-    { id: 'certificates', label: 'Certificates' }
+    { id: 'beatris-ilieva', label: 'Beatris Ilieva' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'education', label: 'Education' }
 ];
 
 export const Header = () => {
@@ -47,8 +46,6 @@ export const Header = () => {
     return (
         <header className={styles['main-header']}>
             <div className={styles['wrapper']}>
-                <span>Beatris Ilieva</span>
-
                 <ul>
                     {navLinks.map(({ id, label }) => (
                         <li key={id}>

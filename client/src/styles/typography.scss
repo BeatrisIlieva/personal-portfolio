@@ -2,7 +2,7 @@
 @import url('https://fonts.cdnfonts.com/css/tisa-sans-pro');
 
 html {
-    font: clamp(12px, 10px + 0.36dvw, 16px) 'Overpass', sans-serif;
+    font: clamp(12px, 10px + 0.36dvw, 16px) / 1.5 'Overpass', sans-serif;
     letter-spacing: 0.08em;
     color: vars.$white;
 }

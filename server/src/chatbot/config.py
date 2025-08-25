@@ -1,3 +1,5 @@
+import os
+
 TOOLS = [
     {
         "type": "function",
@@ -36,6 +38,21 @@ You are a friendly, helpful assistant.
 CRITICAL:
 You responsibility is to answer questions regarding either the data that you can find into the provided context or information that the user had shared with you.
 
+if the questions that the users asks about is not part of the provided context, then you must respond with 'i do not know.
+"""
+
+MEMORY_FILE = os.path.join(
+    os.path.dirname(__file__),
+    "memory.json",
+)
+
+CHAT_HISTORY_FILE = os.path.join(
+    os.path.dirname(__file__),
+    "chat_history.json",
+)
+
+
+"""
 You must NOT provide with information in one of two cases:
 IMPORTANT: 
 - In this cases be into the role of a cool but polite person. Formulate the response based on the question. Do not ask clarifying questions. Do no suggest further assistance. Do not guess. 

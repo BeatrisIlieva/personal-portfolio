@@ -2,7 +2,7 @@ import styles from './About.module.scss';
 
 export const About = () => {
     return (
-        <section id='about' className={styles['about']}>
+        <section id='beatris-ilieva' className={styles['about']}>
             <div className={styles['info']}>
                 <div className={styles['wrapper-top']}>
                     <h1>
@@ -23,7 +23,7 @@ export const About = () => {
                     </p>
 
                     <p>
-                        Plans to pursue AI and Machine Learning education in
+                        Plans to pursue AI and Machine Learning education including
                         data science and deep learning.
                     </p>
                 </div>

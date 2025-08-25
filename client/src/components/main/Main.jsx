@@ -1,19 +1,18 @@
 import { About } from './about/About';
-import { Certificates } from './ceritficates/Certificates';
+import { Certificates } from './education/ceritficates/Certificates';
 import { Chatbot } from './chatbot/Chatbot';
-import { Diploma } from './diploma/Diploma';
+import { Education } from './education/Education';
 
 import styles from './Main.module.scss';
-import { Project } from './project/Project';
+import { Experience } from './experience/Experience';
 
 export const Main = () => {
     return (
         <main className={styles['main']}>
             <About />
-            <Project />
-            <Diploma />
-            <Certificates />
-            <Chatbot/>
+            <Experience />
+            <Education />
+            {/* <Chatbot/> */}
         </main>
     );
 };

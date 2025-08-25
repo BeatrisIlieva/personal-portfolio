@@ -1,0 +1,24 @@
+.diploma {
+    display: flex;
+    flex-direction: column;
+    gap: 4em;
+
+    p {
+        align-self: flex-end;
+        max-width: 58ch;
+        font-size: 1.6em;
+        margin-bottom: 1em;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5em;
+        padding-inline: 8dvw;
+
+        div {
+            display: flex;
+            // flex-grow: 0 0 30%;
+        }
+    }
+}

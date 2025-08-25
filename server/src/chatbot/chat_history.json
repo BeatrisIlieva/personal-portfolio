@@ -5,7 +5,15 @@
   },
   {
     "role": "assistant",
-    "content": "Nice to meet you, Bea! Being an astronaut sounds amazing. If you have any questions or need information related to your profession, feel free to ask!"
+    "content": "I do not know."
+  },
+  {
+    "role": "user",
+    "content": "what is drf react gems?"
+  },
+  {
+    "role": "assistant",
+    "content": "DRF React Gems is a full-stack e-commerce platform built with Django REST Framework for the backend and React for the frontend. It implements features such as user authentication, shopping cart functionality, wishlist management, payment processing, order history tracking, and asynchronous email notifications using Celery and Redis. The technology stack includes Django, Django REST Framework for the backend; React for the frontend; PostgreSQL as the database; JWT (JSON Web Tokens) for authentication; Azure for hosting; Redis Cloud for caching; and"
   },
   {
     "role": "user",
@@ -13,14 +21,30 @@
   },
   {
     "role": "assistant",
-    "content": "As an astronaut, you might be interested in how DRF (Django Rest Framework) and React gems can enhance data management and user interfaces for space mission applications or research projects. These tools could help streamline communication and data analysis in your field."
+    "content": "As an astronaut, you might be interested in the following aspects of DRF React Gems:\n\n1. **Technology Stack**: Understanding the technologies used (Django REST Framework and React) could help you appreciate how web applications are built and maintained.\n\n2. **User Authentication**: Knowing about user authentication methods like JWT can be relevant if you're involved in secure data handling or communications.\n\n3. **Deployment Architecture**: Information on cloud services (like Azure for hosting) may interest you, especially regarding how"
   },
   {
     "role": "user",
-    "content": "what is pizza?"
+    "content": "what Earwear Products do you have?"
   },
   {
     "role": "assistant",
-    "content": "I'm unable to provide information about pizza as it is not part of the provided context."
+    "content": "The available Earwear products are:\n\n1. **Myosotis Earwear**\n   - Color: White\n   - Metal: Platinum\n   - Stone: Diamond\n   - Available Sizes & Pricing:\n     - Small: $4108.00 (Stock Quantity: 5)\n     - Medium: $4225.00 (Stock Quantity: 5)\n     - Large: $4340.00 (Stock Quantity: 5)\n   - Average Rating: 3.8/5"
+  },
+  {
+    "role": "user",
+    "content": "what blue rings do you have?"
+  },
+  {
+    "role": "assistant",
+    "content": "The available blue rings are:\n\n1. **Sunflower Fingerwear**\n   - Color: Blue\n   - Metal: Platinum\n   - Stone: Sapphire\n   - Price: $3117.00\n\n2. **Berry Earwear**\n   - Color: Blue\n   - Metal: Platinum\n   - Stone: Sapphire\n   - Available Sizes & Pricing:\n     - Small: $3609.00 \n     - Medium: $3726.00 \n     - Large: $383"
+  },
+  {
+    "role": "user",
+    "content": "do you have yellow gold products made?"
+  },
+  {
+    "role": "assistant",
+    "content": "Yes, there are several yellow gold products available:\n\n1. **Leaf Fingerwear**\n   - Color: White\n   - Metal: Yellow Gold\n   - Stone: Diamond\n   - Available Sizes & Pricing:\n     - Small: $2411.00 (Stock Quantity: 5)\n     - Medium: $2526.00 (Stock Quantity: 5)\n     - Large: $2637.00 (Stock Quantity: 5)\n   - Average Rating: 4.0"
   }
 ]
