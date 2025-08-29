@@ -1,70 +1,125 @@
-## works
-from django.http import StreamingHttpResponse
+# import os
+# import hashlib
+# import json
+# from django.conf import settings
+# from django.http import StreamingHttpResponse
+# from rest_framework.views import APIView
+# from rest_framework.response import Response
+# from rest_framework.permissions import AllowAny
+# from rest_framework import status
 
+# from src.chatbot.serializers import ChatRequestSerializer
+# from src.chatbot.constants import ERROR_RESPONSE_OBJECT
+# from src.chatbot.managers import ComponentManager, MemoryManager
+# from src.chatbot.services import ChatbotService
+
+# os.environ["OPENAI_API_KEY"] = settings.OPENAI_API_KEY
+# os.environ["LANGSMITH_API_KEY"] = settings.LANGSMITH_API_KEY
+# os.environ["LANGSMITH_ENDPOINT"] = settings.LANGSMITH_ENDPOINT
+# os.environ["LANGSMITH_TRACING_V2"] = "true"
+
+
+# class ChatBotAPIView(APIView):
+#     permission_classes = [AllowAny]
+
+#     def post(self, request):
+#         try:
+#             # Validate input
+#             serializer = ChatRequestSerializer(data=request.data)
+#             if not serializer.is_valid():
+#                 return Response(ERROR_RESPONSE_OBJECT, status=status.HTTP_400_BAD_REQUEST)
+
+#             user_query = serializer.validated_data['message']
+#             session_id = self._get_or_create_session_id(request)
+
+#             # Get components and memory
+#             components = ComponentManager()
+#             memory = MemoryManager.get_or_create_memory(session_id)
+
+#             # Create service
+#             service = ChatbotService(components.llm, components.vectorstore)
+
+#             # Define generator with error handling
+#             def generate_response():
+#                 try:
+#                     for chunk in service.generate_response_stream(user_query, session_id, memory):
+#                         yield chunk
+#                 except Exception as e:
+#                     yield f"data: {json.dumps({'error': str(e)})}\n\n"
+
+#             return StreamingHttpResponse(generate_response(), content_type='text/plain')
+
+#         except Exception as e:
+#             return Response({"error": str(e), "success": False}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+#     @staticmethod
+#     def _get_or_create_session_id(request):
+#         session_id = request.data.get('session_id')
+#         if not session_id:
+#             session_data = f"{request.META.get('REMOTE_ADDR', 'unknown')}"
+#             session_id = hashlib.md5(session_data.encode()).hexdigest()[:12]
+#         return session_id
+
+
+
+import os
+import hashlib
+import json
+from django.conf import settings
+from django.http import StreamingHttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 
-
 from src.chatbot.serializers import ChatRequestSerializer
-
 from src.chatbot.constants import ERROR_RESPONSE_OBJECT
-from src.chatbot.services import ChatService
+from src.chatbot.managers import ComponentManager
+from src.chatbot.services import ChatbotService
+
+os.environ["OPENAI_API_KEY"] = settings.OPENAI_API_KEY
+os.environ["LANGSMITH_API_KEY"] = settings.LANGSMITH_API_KEY
+os.environ["LANGSMITH_ENDPOINT"] = settings.LANGSMITH_ENDPOINT
+os.environ["LANGSMITH_TRACING_V2"] = "true"
 
 
 class ChatBotAPIView(APIView):
-    """
-    Main chatbot API endpoint that handles user queries and returns AI responses.
-    """
+    permission_classes = [AllowAny]
 
     def post(self, request):
-        """
-        Handle POST requests for chatbot interactions
-
-        Expected payload:
-        {
-            "message": "User's question"
-        }
-
-        Returns:
-        {
-            "response": "AI response",
-            "success": true/false,
-        }
-        """
         try:
             # Validate input
             serializer = ChatRequestSerializer(data=request.data)
-
             if not serializer.is_valid():
-                return Response(
-                    ERROR_RESPONSE_OBJECT,
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
+                return Response(ERROR_RESPONSE_OBJECT, status=status.HTTP_400_BAD_REQUEST)
 
-            user_message = serializer.validated_data['message']
-            
-            chat_service = ChatService()
+            user_query = serializer.validated_data['message']
+            session_id = self._get_or_create_session_id(request)
 
-            response = StreamingHttpResponse(
-                chat_service.process_query(user_message),
-                content_type='text/event-stream'
-            )
+            # Get components and memory
+            components = ComponentManager()
 
-            if not response:
-                return Response(
-                    ERROR_RESPONSE_OBJECT,
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                )
+            # Create service
+            service = ChatbotService(components.llm, components.vectorstore, components.app, components.memory)
 
-            response['Cache-Control'] = 'no-cache'
-            # Disable buffering in proxies like Nginx
-            response['X-Accel-Buffering'] = 'no'
+            # Define generator with error handling
+            def generate_response():
+                try:
+                    for chunk in service.generate_response_stream(user_query, session_id):
+                        yield chunk
+                except Exception as e:
+                    yield f"data: {json.dumps({'error': str(e)})}\n\n"
 
-            return response
+            return StreamingHttpResponse(generate_response(), content_type='text/plain')
 
         except Exception as e:
-            return Response(
-                ERROR_RESPONSE_OBJECT,
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            )
+            return Response({"error": str(e), "success": False}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    @staticmethod
+    def _get_or_create_session_id(request):
+        session_id = request.data.get('session_id')
+        if not session_id:
+            session_data = f"{request.META.get('REMOTE_ADDR', 'unknown')}"
+            session_id = hashlib.md5(session_data.encode()).hexdigest()[:12]
+        return session_id
+
