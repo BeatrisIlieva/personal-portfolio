@@ -1,0 +1,102 @@
+@use '../../../styles/variables' as vars;
+
+.project {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 3em;
+
+    .wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.5em;
+
+        @media (max-width: 1100px) {
+            flex-direction: column;
+        }
+
+        .relative-container {
+            flex: 0 1 25%;
+            position: relative;
+
+            article {
+                position: absolute;
+            }
+
+            article:nth-child(1) {
+                top: -5em;
+                left: 0;
+            }
+
+            article:nth-child(2) {
+                left: 0;
+                top: -3em;
+                width: 8dvw;
+                z-index: 3;
+            }
+        }
+
+        & > article {
+            flex: 0 1 55%;
+        }
+
+        .info-wrapper {
+            flex: 0 1 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5em;
+            margin-top: 2em;
+        }
+    }
+
+    .buttons-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75em;
+        align-items: flex-end;
+
+        @media (max-width: 1100px) {
+            align-items: unset;
+        }
+
+        a {
+            flex: 1 1 100%;
+            width: 26em;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            text-align: center;
+            text-transform: uppercase;
+            padding: 0.5em 1.25em;
+            border-radius: 0.2em;
+            opacity: 0.7;
+            transition: opacity 0.3s ease-in-out;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            @media (max-width: 1100px) {
+                width: unset;
+            }
+        }
+
+        a:nth-of-type(1) {
+            background: vars.$black;
+            color: vars.$white;
+        }
+
+        a:nth-of-type(2) {
+            background: vars.$white;
+            color: vars.$black;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    }
+}

@@ -1,9 +1,0 @@
-@use '../../styles/variables' as vars;
-
-.main {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20em;
-    padding-inline: clamp(1em, 5dvw, 3em);
-}

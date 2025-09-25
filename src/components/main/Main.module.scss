@@ -1,0 +1,70 @@
+// @use '../../styles/variables' as vars;
+// @use '../../styles/animations' as anim;
+
+// .main {
+//     flex-grow: 1;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 4.5em;
+//     padding-inline: clamp(1em, 5dvw, 3em);
+
+    
+
+//     @media (max-width: 800px) {
+//         gap: 8em;
+//     }
+
+//     & > section {
+//         @include anim.animate-fade-in(1.2s);
+//         & > p {
+//             margin-top: 5em;
+//             align-self: flex-end;
+//             max-width: 60ch;
+//             font-size: 1.5em;
+
+//             @media (max-width: 800px) {
+//                 margin-top: 0;
+//             }
+//         }
+//     }
+// }
+
+
+@use '../../styles/variables' as vars;
+@use '../../styles/animations' as anim;
+
+.main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4.5em;
+    padding-inline: clamp(1em, 5dvw, 3em);
+           
+    @media (max-width: 800px) {
+        gap: 8em;
+    }
+     
+    & > section {
+        // Initial state - hidden
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        
+        // Visible state when scrolled into view
+        &.fadeInVisible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        & > p {
+            margin-top: 5em;
+            align-self: flex-end;
+            max-width: 60ch;
+            font-size: 1.5em;
+             
+            @media (max-width: 800px) {
+                margin-top: 0;
+            }
+        }
+    }
+}
