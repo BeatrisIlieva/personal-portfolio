@@ -12,19 +12,19 @@ export const Diploma = () => {
 
             <div className={styles['wrapper']}>
                 <div>
-                    <a href='https://softuni.bg/certificates/details/250352/a3d65bbe'>
+                    <a href='https://softuni.bg/certificates/details/250352/a3d65bbe' target='blank'>
                         <img src='/diploma-1.jpeg' alt='diploma' />
                     </a>
                 </div>
 
                 <div>
-                    <a href='https://softuni.bg/certificates/details/250352/a3d65bbe'>
+                    <a href='https://softuni.bg/certificates/details/250352/a3d65bbe' target='blank'>
                         <img src='/diploma-2.jpeg' alt='diploma' />
                     </a>
                 </div>
 
                 <div>
-                    <a href='https://softuni.bg/certificates/details/250352/a3d65bbe'>
+                    <a href='https://softuni.bg/certificates/details/250352/a3d65bbe' target='blank'>
                         <img src='/diploma-3.jpeg' alt='diploma' />
                     </a>
                 </div>
