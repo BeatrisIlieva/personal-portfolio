@@ -7,29 +7,27 @@
     flex-direction: column;
     gap: 4.5em;
     padding-inline: clamp(1em, 5dvw, 3em);
-           
+
     @media (max-width: 800px) {
         gap: 8em;
     }
-     
+
     & > section {
         // Initial state - hidden
         opacity: 0;
-        transform: translateY(30px);
         transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-        
+
         // Visible state when scrolled into view
         &.fadeInVisible {
             opacity: 1;
-            transform: translateY(0);
         }
-        
+
         & > p {
-            margin-top: 5em;
+            margin-top: 6em;
             align-self: flex-end;
             max-width: 60ch;
             font-size: 1.5em;
-             
+
             @media (max-width: 800px) {
                 margin-top: 0;
             }
