@@ -8,7 +8,7 @@ export const Experience = () => {
             <p>
                 DRF React Gems: Full-stack e-commerce platform built with{' '}
                 <strong>Django REST Framework</strong>, <strong>React</strong>,{' '}
-                <strong>LangChain</strong> and <strong>Pinecone</strong>.
+                <strong>LangChain</strong> and <strong>Pinecone</strong>
             </p>
 
             <div className={styles['wrapper']}>

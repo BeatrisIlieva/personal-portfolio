@@ -6,8 +6,7 @@ export const Diploma = () => {
             <p>
                 Graduated from the{' '}
                 <strong>Software Engineering with Python</strong> program at{' '}
-                <em>Software University</em>, achieving excellent grades in all
-                exams.
+                <em>Software University</em>
             </p>
 
             <div className={styles['wrapper']}>

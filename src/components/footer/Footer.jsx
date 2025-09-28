@@ -1,9 +1,11 @@
-import styles from './Footer.module.scss'
+import styles from './Footer.module.scss';
 
 export const Footer = () => {
     return (
         <div className={styles['footer']}>
-            <span>beatris.ilieva@icloud.com</span>
+            <a href='mailto:beatris.ilieva@icloud.com'>
+                beatris.ilieva@icloud.com
+            </a>
         </div>
     );
 };
