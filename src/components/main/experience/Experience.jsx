@@ -4,7 +4,7 @@ import { Image } from './image/Image';
 
 export const Experience = () => {
     return (
-        <section id='experience' className={styles['project']}>
+        <section id='project' className={styles['project']}>
             <p>
                 DRF React Gems: Full-stack e-commerce platform built with{' '}
                 <strong>Django REST Framework</strong>, <strong>React</strong>,{' '}
@@ -29,7 +29,7 @@ export const Experience = () => {
                         an intelligent virtual consultant, guides customers
                         through personalized product discovery. Built using
                         technologies such as <strong>LangChain</strong>,{' '}
-                        <strong>OpenAI GPT-4.1</strong>,{' '}
+                        <strong>OpenAI GPT-4</strong>,{' '}
                         <strong>Pinecone</strong> vector database, the chatbot
                         combines luxury retail expertise to deliver tailored
                         jewelry recommendations based on customer preferences

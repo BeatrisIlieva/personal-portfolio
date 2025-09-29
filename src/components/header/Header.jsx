@@ -8,9 +8,9 @@ import { useEffect, useState } from 'react';
 
 const navLinks = [
     { id: 'beatris-ilieva', label: 'Beatris Ilieva' },
-    { id: 'experience', label: 'Experience' },
+    { id: 'project', label: 'Project' },
     { id: 'education', label: 'Diploma' },
-    { id: 'certificates', label: 'Certificates' },
+    { id: 'certificates', label: 'Certificates' }
 ];
 
 export const Header = () => {
