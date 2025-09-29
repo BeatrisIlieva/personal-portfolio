@@ -6,7 +6,7 @@ export const About = () => {
     const handleDownloadCV = () => {
         const link = document.createElement('a');
         link.href = cvPdf;
-        link.download = 'Beatris-Ilieva-Resume.pdf';
+        link.download = 'Beatris_Ilieva_Resume.pdf';
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
