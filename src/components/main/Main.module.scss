@@ -15,7 +15,7 @@
     & > section {
         // Initial state - hidden
         opacity: 0;
-        transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        transition: opacity 2s ease-out;
 
         // Visible state when scrolled into view
         &.fadeInVisible {
