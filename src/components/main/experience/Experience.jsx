@@ -7,8 +7,8 @@ export const Experience = () => {
         <section id='project' className={styles['project']}>
             <p>
                 DRF React Gems: Full-stack e-commerce platform built with{' '}
-                <strong>Django REST Framework</strong>, <strong>React</strong>,{' '}
-                <strong>LangChain</strong> and <strong>Pinecone</strong>
+                <strong>Django REST Framework</strong>, <strong>React</strong>,
+                and <strong>LangChain</strong>
             </p>
 
             <div className={styles['wrapper']}>
@@ -29,11 +29,10 @@ export const Experience = () => {
                         an intelligent virtual consultant, guides customers
                         through personalized product discovery. Built using
                         technologies such as <strong>LangChain</strong>,{' '}
-                        <strong>OpenAI GPT-4</strong>,{' '}
-                        <strong>Pinecone</strong> vector database, the chatbot
-                        combines luxury retail expertise to deliver tailored
-                        jewelry recommendations based on customer preferences
-                        and available inventory.
+                        <strong>OpenAI GPT-4</strong>, <strong>Pinecone</strong>{' '}
+                        vector database, the chatbot combines luxury retail
+                        expertise to deliver tailored jewelry recommendations
+                        based on customer preferences and available inventory.
                     </p>
                 </div>
 

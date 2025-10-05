@@ -17,20 +17,20 @@ export const About = () => {
             <div className={styles['info']}>
                 <div className={styles['wrapper-top']}>
                     <h1>
-                        Full-stack developer
+                        Backend developer
                         <span className={styles['dot']}></span>
                     </h1>
 
                     <p>
-                        I like bringing both the technical and visual aspects
-                        <br></br> of web applications to life.
+                        I focus on crafting reliable backend systems that
+                        <br></br> power seamless user experiences.
                     </p>
                 </div>
 
                 <div className={styles['wrapper-bottom']}>
                     <p>
-                        Building products with great user experience using
-                        Django, React, and AI integrations.
+                        Building scalable applications with REST APIs using
+                        Django, Python, and AI integrations.
                     </p>
 
                     <p>
