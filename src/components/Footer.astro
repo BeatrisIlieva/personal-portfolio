@@ -1,0 +1,47 @@
+<footer>
+    <div class='line-wrapper'>
+        <div class='rhombus-filled'></div>
+        <div class='line'></div>
+        <div class='rhombus-filled'></div>
+    </div>
+
+    <p>© 2025 Beatris Ilieva</p>
+</footer>
+
+<style lang='scss'>
+    @use '../styles/variables' as vars;
+
+    footer {
+        height: 4em;
+
+        p {
+            text-align: center;
+            margin-top: 1em;
+            opacity: 0.6;
+        }
+    }
+
+    .line-wrapper {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+        width: 100%;
+        padding-inline: 2em;
+    }
+
+    .line {
+        height: 1px;
+        background: vars.$light-grey;
+        flex-grow: 1;
+    }
+
+    .rhombus-filled {
+        width: 8px;
+        height: 8px;
+        background-color: vars.$light-grey;
+        transform: rotate(45deg);
+        border-radius: 2px;
+    }
+</style>
+
+<script></script>

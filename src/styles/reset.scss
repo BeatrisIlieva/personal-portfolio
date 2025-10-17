@@ -1,3 +1,6 @@
+@use '../styles/variables' as vars;
+@use '../styles/mixins' as mixins;
+
 * {
     margin: 0;
     padding: 0;
@@ -6,23 +9,20 @@
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
+    color: vars.$black;
 }
 
 *,
 *::before,
 *::after,
-button,
-blockquote {
+button {
     box-sizing: inherit;
     font: inherit;
 }
 
 li,
 a,
-img,
-figure,
-details,
-details > summary {
+img {
     display: block;
 }
 
@@ -34,14 +34,18 @@ img {
 
 button {
     all: unset;
+    @include mixins.glass-border;
     cursor: pointer;
 
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-transform: uppercase;
-    padding: 0.5em 1.25em;
+    padding: 0.5em 0;
     border-radius: 0.2em;
     opacity: 0.7;
     transition: opacity 0.3s ease-in-out;
+    width: 22ch;
 
     &:hover {
         opacity: 1;
@@ -54,9 +58,6 @@ svg {
 }
 
 a {
-    color: inherit;
-}
-
-button:disabled {
-    cursor: auto !important;
+    color: vars.$black;
+    text-decoration: none;
 }

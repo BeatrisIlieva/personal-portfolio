@@ -1,0 +1,72 @@
+@use '../styles/animations' as anim;
+@use '../styles/mixins' as mixins;
+
+body {
+    @include mixins.maximum-width;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: fixed;
+        z-index: -1;
+        background-image: url('public/wave-small.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        right: 0;
+        bottom: 0;
+        width: 50%;
+        height: 50%;
+        background-position: bottom right;
+    }
+
+    &::before {
+        content: '';
+        position: fixed;
+        z-index: -1;
+        background-image: url('public/wave-large.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        left: -20%;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+
+        @media (max-width: 1400px) and (orientation: portrait) {
+            background-image: url('public/wave-large-landscape.png');
+            top: 10%;
+            left: 0;
+        }
+    }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+main > section {
+    min-height: calc(100dvh - 4em);
+    justify-content: center;
+    padding: 2em 4em;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    scroll-margin-top: 4em;
+    transition: opacity 2s ease-out;
+    opacity: 0;
+
+    &.fadeInVisible {
+        opacity: 1;
+    }
+}
+
+main > section h3 {
+    max-width: 56ch;
+    margin-left: auto;
+
+    @media (max-width: 1100px) {
+        margin-inline: auto;
+        text-align: center;
+    }
+}

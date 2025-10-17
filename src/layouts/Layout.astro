@@ -1,0 +1,100 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import {
+    SITE_TITLE,
+    SITE_DESCRIPTION,
+    SITE_URL,
+    OG_IMAGE,
+    PERSON_SCHEMA
+} from '../consts';
+
+import '../styles/site.scss';
+
+// Get current page URL for canonical
+const canonicalURL = new URL(Astro.url.pathname, SITE_URL);
+---
+
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <link rel='icon' href='/favicon.png' type='image/png' />
+
+        <!-- Title & Description -->
+        <title>{SITE_TITLE}</title>
+        <meta name='description' content={SITE_DESCRIPTION} />
+
+        <!-- Canonical -->
+        <link rel='canonical' href={canonicalURL} />
+
+        <!-- Open Graph -->
+        <meta property='og:title' content={SITE_TITLE} />
+        <meta property='og:description' content={SITE_DESCRIPTION} />
+        <meta property='og:image' content={OG_IMAGE} />
+        <meta property='og:url' content={canonicalURL} />
+        <meta property='og:type' content='website' />
+
+        <!-- Structured Data -->
+        <script
+            type='application/ld+json'
+            set:html={JSON.stringify(PERSON_SCHEMA)}
+        />
+    </head>
+
+    <body>
+        <Header />
+
+        <main>
+            <slot />
+        </main>
+
+        <Footer />
+
+        <script is:inline>
+            function initScrollAnimation(options = {}) {
+                const {
+                    threshold = 0.1,
+                    rootMargin = '0px 0px -50px 0px',
+                    animationClass = 'fadeInVisible'
+                } = options;
+
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add(animationClass);
+                            } else {
+                                entry.target.classList.remove(animationClass);
+                            }
+                        });
+                    },
+                    { threshold, rootMargin }
+                );
+
+                const sections = document.querySelectorAll('main > section');
+                sections.forEach((section) => {
+                    observer.observe(section);
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    initScrollAnimation({
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px',
+                        animationClass: 'fadeInVisible'
+                    });
+                });
+            } else {
+                initScrollAnimation({
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px',
+                    animationClass: 'fadeInVisible'
+                });
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,12 @@
+@use '../styles/variables' as vars;
+
+@mixin glass-border {
+    outline: 0.1em solid vars.$white;
+    border: 0.1em solid vars.$light-grey;
+    box-shadow: 0 0 0.4em 0 rgb(0, 0, 0, 0.4);
+}
+
+@mixin maximum-width {
+    max-width: 1400px;
+    margin-inline: auto;
+}

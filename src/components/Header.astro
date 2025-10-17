@@ -1,0 +1,720 @@
+---
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+
+library.add(faGithub, faLinkedin, faEnvelope);
+
+const githubIcon = icon(faGithub).html[0];
+const linkedinIcon = icon(faLinkedin).html[0];
+const envelopeIcon = icon(faEnvelope).html[0];
+
+import { SITE_TITLE } from '../consts';
+
+const navLinks = [
+    { id: 'projects', label: 'Projects' },
+    { id: 'diploma', label: 'Diploma' },
+    { id: 'certificates', label: 'Certificates' }
+];
+---
+
+<header class='site-header'>
+    <nav class='main-nav'>
+        <h1>
+            <a href={`#beatris-ilieva`} data-section='beatris-ilieva'>
+                {SITE_TITLE}
+            </a>
+        </h1>
+        <ul class='section-links'>
+            {
+                navLinks.map(({ id, label }) => (
+                    <li>
+                        <a href={`#${id}`} data-section={id}>
+                            {label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+
+        <ul class='contact-links'>
+            <li>
+                <a href='https://github.com/BeatrisIlieva' target='_blank'>
+                    <Fragment set:html={githubIcon} />
+                </a>
+            </li>
+            <li>
+                <a
+                    href='https://www.linkedin.com/in/beatrisilieva'
+                    target='_blank'
+                >
+                    <Fragment set:html={linkedinIcon} />
+                </a>
+            </li>
+            <li>
+                <a href='mailto:beatris.ilieva@icloud.com'>
+                    <Fragment set:html={envelopeIcon} />
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class='line-wrapper'>
+        <div class='rhombus-filled'></div>
+        <div class='line'></div>
+        <div class='rhombus-filled'></div>
+    </div>
+</header>
+
+<style lang='scss'>
+    @use '../styles/variables' as vars;
+    @use '../styles/mixins' as mixins;
+
+    .site-header {
+        height: 4em;
+        padding: 3em 4em 2em 4em;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background: vars.$white;
+        opacity: 0.9;
+        z-index: 2;
+
+        @media (max-width: 400px) {
+            font-size: 0.9em;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+
+            h1 {
+                line-height: 1;
+                white-space: nowrap;
+
+                @media (max-width: 680px) {
+                    margin-right: auto;
+                }
+            }
+
+            ul {
+                display: flex;
+            }
+
+            .section-links {
+                margin-left: 8em;
+                margin-right: auto;
+                gap: 2em;
+                align-self: flex-end;
+
+                @media (max-width: 900px) {
+                    margin-inline: auto;
+                }
+
+                @media (max-width: 680px) {
+                    display: none;
+                }
+
+                li {
+                    font-size: 1.1em;
+
+                    a {
+                        font-weight: 500;
+                    }
+                }
+            }
+
+            .contact-links {
+                gap: 1em;
+                align-items: center;
+
+                li {
+                    @include mixins.glass-border;
+                    flex-grow: 1;
+                    border-radius: 50%;
+                    aspect-ratio: 1/1;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.8;
+                    width: 2em;
+                    aspect-ratio: 1/1;
+                    transition:
+                        opacity 0.3s ease-in-out,
+                        background 0.3s ease-in-out,
+                        transform 0.2s ease-in-out;
+
+                    a {
+                        margin-top: 0.35em;
+                    }
+
+                    &:nth-child(1) {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        a {
+                            font-size: 0.72em;
+                            color: vars.$white;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        background-color: vars.$blue;
+                        color: vars.$white;
+                    }
+
+                    &:nth-child(3) {
+                        background-color: vars.$green;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .line-wrapper {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding-inline: 2em;
+        }
+
+        .line {
+            height: 1px;
+            background: vars.$light-grey;
+            flex-grow: 1;
+        }
+
+        .rhombus-filled {
+            width: 8px;
+            height: 8px;
+            background-color: vars.$light-grey;
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+    }
+
+    .main-nav a[data-section] {
+        opacity: 0.7;
+        transition: opacity 0.3s ease-in-out;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script is:inline data-astro-rerun>
+    function setupActiveSection() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.main-nav a[data-section]');
+
+        if (!sections.length || !navLinks.length) {
+            return;
+        }
+
+        const updateActiveLink = (activeId) => {
+            navLinks.forEach((link) => {
+                link.classList.toggle(
+                    'active',
+                    link.dataset.section === activeId
+                );
+            });
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleSections = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => {
+                        const aTop = a.boundingClientRect.top;
+                        const bTop = b.boundingClientRect.top;
+                        return Math.abs(aTop) - Math.abs(bTop);
+                    });
+
+                if (visibleSections.length > 0) {
+                    updateActiveLink(visibleSections[0].target.id);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '-80px 0px -80px 0px'
+            }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupActiveSection);
+    } else {
+        setupActiveSection();
+    }
+</script>
+
+<!-- ---
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+
+library.add(faGithub, faLinkedin, faEnvelope);
+
+const githubIcon = icon(faGithub).html[0];
+const linkedinIcon = icon(faLinkedin).html[0];
+const envelopeIcon = icon(faEnvelope).html[0];
+
+import { SITE_TILE } from '../consts';
+
+const navLinks = [
+    { id: 'beatris-ilieva', label: 'Beatris Ilieva' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'diploma', label: 'Diploma' },
+    { id: 'certificates', label: 'Certificates' }
+];
+---
+
+<header class='site-header'>
+    <nav class='main-nav'>
+        <ul class='section-links'>
+            {navLinks.map(({ id, label }) => (
+                <li>
+                    <a href={`#${id}`} data-section={id}>
+                        {label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+
+        <ul class='contact-links'>
+            <li>
+                <a href='https://github.com/BeatrisIlieva' target='_blank'>
+                    <Fragment set:html={githubIcon} />
+                </a>
+            </li>
+            <li>
+                <a
+                    href='https://www.linkedin.com/in/beatrisilieva'
+                    target='_blank'
+                >
+                    <Fragment set:html={linkedinIcon} />
+                </a>
+            </li>
+            <li>
+                <a href='mailto:beatris.ilieva@icloud.com'>
+                    <Fragment set:html={envelopeIcon} />
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class='line-wrapper'>
+        <div class='rhombus-filled'></div>
+        <div class='line'></div>
+        <div class='rhombus-filled'></div>
+    </div>
+</header>
+
+<style lang='scss'>
+    @use '../styles/variables' as vars;
+    @use '../styles/mixins' as mixins;
+
+    .site-header {
+        height: 4em;
+        padding: 3em 4em 2em 4em;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background: vars.$white;
+        opacity: 0.9;
+        z-index: 2;
+
+        @media (max-width: 400px) {
+            font-size: 0.9em;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+
+            h1 {
+                line-height: 1;
+                white-space: nowrap;
+
+                @media (max-width: 680px) {
+                    margin-right: auto;
+                }
+            }
+
+            ul {
+                display: flex;
+            }
+
+            .section-links {
+                margin-left: 8em;
+                margin-right: auto;
+                gap: 2em;
+                align-self: flex-end;
+
+                @media (max-width: 900px) {
+                    margin-inline: auto;
+                }
+
+                @media (max-width: 680px) {
+                    display: none;
+                }
+
+                li {
+                    font-size: 1.1em;
+                }
+            }
+
+            .contact-links {
+                gap: 1em;
+                align-items: center;
+
+                li {
+                    @include mixins.glass-border;
+                    flex-grow: 1;
+                    border-radius: 50%;
+                    aspect-ratio: 1/1;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.8;
+                    width: 2em;
+                    aspect-ratio: 1/1;
+                    transition:
+                        opacity 0.3s ease-in-out,
+                        background 0.3s ease-in-out,
+                        transform 0.2s ease-in-out;
+
+                    a {
+                        margin-top: 0.35em;
+                    }
+
+                    &:nth-child(1) {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        a {
+                            font-size: 0.72em;
+                            color: vars.$white;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        background-color: vars.$blue;
+                        color: vars.$white;
+                    }
+
+                    &:nth-child(3) {
+                        background-color: vars.$green;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .line-wrapper {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding-inline: 2em;
+        }
+
+        .line {
+            height: 1px;
+            background: vars.$light-grey;
+            flex-grow: 1;
+        }
+
+        .rhombus-filled {
+            width: 8px;
+            height: 8px;
+            background-color: vars.$light-grey;
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+    }
+
+    .section-links a {
+        opacity: 0.5;
+        transition: opacity 0.3s ease-in-out;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script is:inline data-astro-rerun>
+    function setupActiveSection() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.section-links a[data-section]');
+
+        if (!sections.length || !navLinks.length) {
+            return;
+        }
+
+        const updateActiveLink = (activeId) => {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.dataset.section === activeId);
+            });
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleSections = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => {
+                        const aTop = a.boundingClientRect.top;
+                        const bTop = b.boundingClientRect.top;
+                        return Math.abs(aTop) - Math.abs(bTop);
+                    });
+
+                if (visibleSections.length > 0) {
+                    updateActiveLink(visibleSections[0].target.id);
+                }
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '-80px 0px -80px 0px'
+            }
+        );
+
+        sections.forEach((section) => observer.observe(section));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupActiveSection);
+    } else {
+        setupActiveSection();
+    }
+</script> -->
+
+<!-- ---
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { library, icon } from '@fortawesome/fontawesome-svg-core';
+
+// Add icons to the library
+library.add(faGithub, faLinkedin, faEnvelope);
+
+// Generate HTML strings
+const githubIcon = icon(faGithub).html[0];
+const linkedinIcon = icon(faLinkedin).html[0];
+const envelopeIcon = icon(faEnvelope).html[0];
+
+import { SITE_TILE } from '../consts';
+---
+
+<header class='site-header'>
+    <nav class='main-nav'>
+        <ul class='section-links'>
+            <li><a href='#beatris-ilieva'>{SITE_TILE}</a></li>
+            <li><a href='#projects'>Projects</a></li>
+            <li><a href='#diploma'>Diploma</a></li>
+            <li><a href='#certificates'>Certificates</a></li>
+        </ul>
+
+        <ul class='contact-links'>
+            <li>
+                <a href='https://github.com/BeatrisIlieva' target='_blank'>
+                    <Fragment set:html={githubIcon} />
+                </a>
+            </li>
+            <li>
+                <a
+                    href='https://www.linkedin.com/in/beatrisilieva'
+                    target='_blank'
+                >
+                    <Fragment set:html={linkedinIcon} />
+                </a>
+            </li>
+            <li>
+                <a href='mailto:beatris.ilieva@icloud.com'>
+                    <Fragment set:html={envelopeIcon} />
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class='line-wrapper'>
+        <div class='rhombus-filled'></div>
+        <div class='line'></div>
+        <div class='rhombus-filled'></div>
+    </div>
+</header>
+
+<style lang='scss'>
+    @use '../styles/variables' as vars;
+    @use '../styles/mixins' as mixins;
+
+    .site-header {
+        height: 4em;
+        padding: 3em 4em 2em 4em;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        background: vars.$white;
+        opacity: 0.9;
+        z-index: 2;
+
+        @media (max-width: 400px) {
+            font-size: 0.9em;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+
+            h1 {
+                line-height: 1;
+                white-space: nowrap;
+
+                @media (max-width: 680px) {
+                    margin-right: auto;
+                }
+            }
+
+            ul {
+                display: flex;
+            }
+
+            .section-links {
+                margin-left: 8em;
+                margin-right: auto;
+                gap: 2em;
+                align-self: flex-end;
+
+                @media (max-width: 900px) {
+                    margin-inline: auto;
+                }
+
+                @media (max-width: 680px) {
+                    display: none;
+                }
+
+                li {
+                    font-size: 1.1em;
+                }
+            }
+
+            .contact-links {
+                gap: 1em;
+                align-items: center;
+
+                li {
+                    @include mixins.glass-border;
+                    flex-grow: 1;
+                    border-radius: 50%;
+                    aspect-ratio: 1/1;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    opacity: 0.8;
+                    width: 2em;
+                    aspect-ratio: 1/1;
+                    transition:
+                        opacity 0.3s ease-in-out,
+                        background 0.3s ease-in-out,
+                        transform 0.2s ease-in-out;
+
+                    a {
+                        margin-top: 0.35em;
+                    }
+
+                    &:nth-child(1) {
+                        padding: 0;
+                        margin: 0;
+                    }
+
+                    &:nth-child(2),
+                    &:nth-child(3) {
+                        a {
+                            font-size: 0.72em;
+                            color: vars.$white;
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        background-color: vars.$blue;
+                        color: vars.$white;
+                    }
+
+                    &:nth-child(3) {
+                        background-color: vars.$green;
+
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+
+        .line-wrapper {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding-inline: 2em;
+        }
+
+        .line {
+            height: 1px;
+            background: vars.$light-grey;
+            flex-grow: 1;
+        }
+
+        .rhombus-filled {
+            width: 8px;
+            height: 8px;
+            background-color: vars.$light-grey;
+            transform: rotate(45deg);
+            border-radius: 2px;
+        }
+    }
+
+    .section-links a {
+        opacity: 0.5;
+        transition: opacity 0.3s ease-in-out;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+</style>
+
+<script is:inline></script> -->

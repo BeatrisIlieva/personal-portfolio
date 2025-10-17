@@ -1,0 +1,190 @@
+<section id='beatris-ilieva' class='about'>
+    <div class='wrapper'>
+        <div class='info'>
+            <div class='wrapper-top'>
+                <h2>
+                    Backend developer
+                    <span class='dot'></span>
+                </h2>
+
+                <p>
+                    I focus on crafting reliable backend systems that
+                    <br />
+                </p> power seamless user experiences.
+            </div>
+
+            <div class='wrapper-bottom'>
+                <p>
+                    Building scalable applications with REST APIs using Python,
+                    Django, and AI integrations.
+                </p>
+
+                <p>
+                    Plans to pursue AI and Machine Learning education including
+                    data science and deep learning.
+                </p>
+            </div>
+        </div>
+
+        <div class='personal-photo'>
+            <div class='thumbnail'>
+                <img src='/personal-photo.png' alt='BeatrisIlieva' />
+            </div>
+        </div>
+    </div>
+    <button id='downloadCvBtn'>Download CV</button>
+</section>
+
+<style lang='scss'>
+    @use '../styles/variables' as vars;
+    @use '../styles/mixins' as mixins;
+
+    .about {
+        .wrapper {
+            display: flex;
+            gap: 10em;
+
+            @media (max-width: 740px) {
+                flex-direction: column;
+                gap: 4em;
+                justify-content: center;
+            }
+        }
+
+        .info {
+            display: flex;
+            flex-direction: column;
+            gap: 10em;
+            flex: 1 1 50%;
+            margin-top: 4em;
+
+            @media (max-width: 740px) {
+                flex: 0 0 auto;
+                gap: 4em;
+            }
+
+            .wrapper-top {
+                @media (max-width: 400px) {
+                    font-size: 0.9em;
+                }
+
+                h2 {
+                    position: relative;
+                    display: inline;
+                    white-space: nowrap;
+                    font-weight: 600;
+
+                    span.dot {
+                        position: absolute;
+                        bottom: 0.19em;
+                        right: -0.2em;
+                        display: inline-block;
+                        width: 0.2em;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                        overflow: hidden;
+                        background: vars.$dark-grey;
+                        outline: 0.02em solid vars.$white;
+                        border: 0.02em solid vars.$light-grey;
+                        box-shadow: 0 0 0.4em 0 rgb(0, 0, 0, 0.4);
+                    }
+                }
+            }
+
+            .wrapper-bottom {
+                display: flex;
+                justify-content: space-between;
+
+                @media (max-width: 1342px) {
+                    flex-direction: column;
+                    gap: 2em;
+                }
+
+                p {
+                    flex: 0 0 45%;
+                    font-size: 0.9em;
+                    opacity: 0.8;
+                    position: relative;
+                    padding-left: 1em;
+
+                    &::before {
+                        position: absolute;
+                        height: 100%;
+                        width: 1px;
+                        background: vars.$light-grey;
+                        content: '';
+                        top: 0;
+                        left: 0;
+                    }
+                }
+            }
+        }
+
+        .personal-photo {
+            flex: 1 1 50%;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            justify-self: center;
+            position: relative;
+
+            @media (max-width: 740px) {
+                flex: 0 0 auto;
+            }
+
+            .thumbnail {
+                width: 16em;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                @include mixins.glass-border;
+
+                @media (max-width: 740px) {
+                    width: 12em;
+                }
+
+                img {
+                    scale: 1.2;
+                    position: relative;
+                    top: 1.4em;
+
+                    @media (max-width: 740px) {
+                        top: 1.1em;
+                    }
+                }
+            }
+
+            .decoration {
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                width: 50dvw;
+            }
+        }
+
+        button {
+            background: vars.$dark-grey;
+            align-self: flex-end;
+
+            @media (max-width: 740px) {
+                align-self: center;
+                margin-top: 4em;
+            }
+        }
+    }
+</style>
+
+<script>
+    import cvPdf from '../assets/cv.pdf';
+
+    document.getElementById('downloadCvBtn').addEventListener('click', () => {
+        const link = document.createElement('a');
+        link.href = cvPdf;
+        link.download = 'Beatris_Ilieva_Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    });
+</script>
