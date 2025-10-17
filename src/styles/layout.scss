@@ -9,7 +9,7 @@ body {
         content: '';
         position: fixed;
         z-index: -1;
-        background-image: url('public/wave-small.png');
+        background-image: url('/wave-small.png');
         background-size: contain;
         background-repeat: no-repeat;
         right: 0;
@@ -23,7 +23,7 @@ body {
         content: '';
         position: fixed;
         z-index: -1;
-        background-image: url('public/wave-large.png');
+        background-image: url('/wave-large.png');
         background-size: contain;
         background-repeat: no-repeat;
         left: -20%;
@@ -32,7 +32,7 @@ body {
         width: 100%;
 
         @media (max-width: 1400px) and (orientation: portrait) {
-            background-image: url('public/wave-large-landscape.png');
+            background-image: url('/wave-large-landscape.png');
             top: 10%;
             left: 0;
         }
