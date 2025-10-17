@@ -64,6 +64,7 @@ main > section {
 main > section h3 {
     max-width: 56ch;
     margin-left: auto;
+    margin-bottom: 1em;
 
     @media (max-width: 1100px) {
         margin-inline: auto;
