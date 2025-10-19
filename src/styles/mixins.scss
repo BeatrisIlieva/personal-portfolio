@@ -4,6 +4,10 @@
     outline: 0.1em solid vars.$white;
     border: 0.1em solid vars.$light-grey;
     box-shadow: 0 0 0.4em 0 rgb(0, 0, 0, 0.4);
+
+    &:hover {
+        box-shadow: 0 0 0.4em 0 rgb(0, 0, 0, 0.8);
+    }
 }
 
 @mixin maximum-width {
