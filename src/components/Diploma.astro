@@ -52,6 +52,10 @@
         div {
             display: flex;
             @include mixins.glass-border;
+
+            &:hover {
+                box-shadow: 0 0 0.4em 0 rgb(0, 0, 0, 0.9);
+            }
         }
     }
 </style>
